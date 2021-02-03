@@ -137,10 +137,11 @@ int main(int argc, char **argv)
                                       dCsrValA, dCsrRowPtrA, dCsrColIndA));
 
     // Perform matrix-matrix multiplication with the CSR-formatted matrix A
-    CHECK_CUSPARSE(cusparseScsrmm(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, M,
-                                  M, N, totalANnz, &alpha, Adescr, dCsrValA,
-                                  dCsrRowPtrA, dCsrColIndA, dB, N, &beta, dC,
-                                  M));
+    // @TODO cusparse-matrix-matrix.cu(140): error: identifier "cusparseScsrmm" is undefined
+    // CHECK_CUSPARSE(cusparseScsrmm(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, M,
+    //                               M, N, totalANnz, &alpha, Adescr, dCsrValA,
+    //                               dCsrRowPtrA, dCsrColIndA, dB, N, &beta, dC,
+    //                               M));
 
     // Copy the result vector back to the host
     CHECK(cudaMemcpy(C, dC, sizeof(float) * M * M, cudaMemcpyDeviceToHost));
